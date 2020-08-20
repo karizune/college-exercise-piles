@@ -1,0 +1,48 @@
+<div class="container ">
+    <div class="mainDiv">
+        <h2>Sistema de Pilha</h2>
+    </div>
+    <div class=" row justify-content-md-center">
+        <div class="col col-lg-3">
+            <form [formGroup]="formulario" (ngSubmit)="transformAsArray()">
+                <div class="form-group">
+                    <label for="expression">Digite alguma expressão aritimética</label>
+                    <input type="text" class="form-control" formControlName="expression">
+                    <br>
+                    <button class="btn btn-outline-light" type="submit">Verificar Expressão</button>
+                </div>
+            </form>
+        </div>
+        <div class="col col-lg-3">
+            <form [formGroup]="formAdicionarPilha" (ngSubmit)="adicionarNaPilha()">
+                <div class="form-group">
+                    <label for="expression">Digite algo para adicionar na pilha</label>
+                    <input type="text" class="form-control" formControlName="item">
+                    <br>
+                    <button class="btn btn-outline-light" type="submit">Adicionar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col col-lg-3" style="text-align:center">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Remover da pilha</h5>
+                  <p class="card-text">Item removido: {{valorRemovido}}</p>
+                  <button class="btn btn-outline-light" (click)="removerDaPilha()">Remover</button>
+                </div>
+              </div>
+        </div>
+        <div class="col col-lg-3" style="text-align:center">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Itens da pilha:</h5>
+                  <div *ngIf="itens">
+                      <p>&nbsp;</p>
+                  </div>
+                      <p class="card-text">{{pilha}}</p>
+                  <button class="btn btn-outline-light" (click)="mostrarValoresDaPilha()">Mostrar</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
