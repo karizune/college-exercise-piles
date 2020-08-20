@@ -1,6 +1,9 @@
 .mainDiv{
-    padding-top: 28%;
-    padding-bottom: 20px;
+
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
 }
 
 .home{

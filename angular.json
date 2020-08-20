@@ -117,8 +117,13 @@
               "devServerTarget": "Sistema-de-pilha:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Sistema-de-pilha"
 }
