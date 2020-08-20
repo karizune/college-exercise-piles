@@ -28,7 +28,7 @@ export class PaginaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.mostrarValoresDaPilha();
+    this.atualizaVetor();
   }
 
   transformAsArray(){
@@ -42,12 +42,12 @@ export class PaginaComponent implements OnInit {
 
   adicionarNaPilha(){
     this.service.inserirNaPilha(this.formAdicionarPilha.get('item').value);
-    // this.mostrarValoresDaPilha();
+    this.atualizaVetor();
   }
 
   removerDaPilha(){
     this.valorRemovido = this.service.removerDaPilha();
-    // this.mostrarValoresDaPilha();
+    this.atualizaVetor();
   }
 
   atualizaVetor(){

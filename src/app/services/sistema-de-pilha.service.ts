@@ -32,7 +32,12 @@ export class SistemaDePilhaService {
   }
 
   removerDaPilha(){
-    return this.pilha.pop();
+    if(this.pilha.length > 0){
+      return this.pilha.pop();
+    }
+    else{
+      window.alert("Não é possível remover pois a pilha está vazia");
+    }
   }
 
   verificaParenteses(){
