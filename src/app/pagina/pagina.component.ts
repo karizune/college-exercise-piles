@@ -20,7 +20,7 @@ export class PaginaComponent implements OnInit {
   itens:boolean = true;
   valorRemovido:string;
   expressao:string;
-  pilha = [];
+  Pilha = [];
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +28,7 @@ export class PaginaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.mostrarValoresDaPilha();
   }
 
   transformAsArray(){
@@ -41,21 +42,32 @@ export class PaginaComponent implements OnInit {
 
   adicionarNaPilha(){
     this.service.inserirNaPilha(this.formAdicionarPilha.get('item').value);
+    // this.mostrarValoresDaPilha();
   }
 
   removerDaPilha(){
     this.valorRemovido = this.service.removerDaPilha();
+    // this.mostrarValoresDaPilha();
   }
 
-  mostrarValoresDaPilha(){
-    this.pilha = this.service.getPilha();
-    if(this.pilha.length == 0){
+  atualizaVetor(){
+    this.Pilha = [];
+    let pilha = this.service.getPilha();
+    if(pilha.length == 0){
       this.itens = true;
-      this.pilha = [];
     }
     else{
       this.itens = false;
     }
+    for(let i = 0; i< pilha.length; i++){
+      this.Pilha.push(pilha[i]);
+    }
   }
+  // mostrarValoresDaPilha(){
+  //   this.pilha = [];
+  //   this.pilha = this.service.pilha;
+  //   console.log(this.pilha);
+
+  // }
 
 }
