@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SistemaDePilhaService } from '../services/sistema-de-pilha.service';
+import { cards } from '../../assets/cards';
 
 @Component({
   selector: 'app-pagina',
@@ -17,6 +18,10 @@ export class PaginaComponent implements OnInit {
     item:['']
   })
 
+  Card:object;
+  NaipeCarta:string;
+  valorCarta:string;
+  Cards = cards;
   itens:boolean = true;
   valorRemovido:string;
   expressao:string;
@@ -28,7 +33,7 @@ export class PaginaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.atualizaVetor();
+    this.resetar();
   }
 
   transformAsArray(){
@@ -63,11 +68,48 @@ export class PaginaComponent implements OnInit {
       this.Pilha.push(pilha[i]);
     }
   }
-  // mostrarValoresDaPilha(){
-  //   this.pilha = [];
-  //   this.pilha = this.service.pilha;
-  //   console.log(this.pilha);
 
-  // }
+  AtualizaDadosCarta(){
+    if(this.Cards.length == 0){
+      this.Card = {
+        "Url":"./assets/deck/purple_back.png"
+      }
+      this.NaipeCarta = "Sem Naipe";
+      this.valorCarta = "Sem Valor";
+      window.alert("Você já pegou todas as cartas");
+    }else{
+      this.Card = this.Cards.pop();
+      if(this.Card['suit'] == "hearts"){
+        this.NaipeCarta = "Copas";
+      }
+      else if(this.Card['suit'] == "diamonds"){
+        this.NaipeCarta = "Ouros";
+      }
+      else if(this.Card['suit'] == "clubs"){
+        this.NaipeCarta = "Paus";
+      }
+      else if(this.Card['suit'] == "spades"){
+        this.NaipeCarta = "Espadas";
+      }
+      else{
+        this.NaipeCarta = "Sem Naipe";
+      }
+      if(this.Card['value'] == "A"){
+        this.valorCarta = "Ás";
+      }
+      else{
+        this.valorCarta = this.Card['value'];
+      }
+    }
+  }
 
+  resetar(){
+    this.Card = {
+      "Url":"./assets/deck/blue_back.png"
+    };
+    this.NaipeCarta = "Sem Naipe";
+    this.valorCarta = "Sem Valor";
+    this.Cards = cards;
+    this.Pilha = [];
+  }
 }
