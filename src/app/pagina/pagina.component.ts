@@ -43,6 +43,7 @@ export class PaginaComponent implements OnInit {
       array.push(this.expressao[i]);
     }
     this.service.pegarExpressao(array);
+    this.atualizaVetor();
   }
 
   adicionarNaPilha(){
@@ -70,46 +71,21 @@ export class PaginaComponent implements OnInit {
   }
 
   AtualizaDadosCarta(){
-    if(this.Cards.length == 0){
-      this.Card = {
-        "Url":"./assets/deck/purple_back.png"
-      }
-      this.NaipeCarta = "Sem Naipe";
-      this.valorCarta = "Sem Valor";
-      window.alert("Você já pegou todas as cartas");
-    }else{
-      this.Card = this.Cards.pop();
-      if(this.Card['suit'] == "hearts"){
-        this.NaipeCarta = "Copas";
-      }
-      else if(this.Card['suit'] == "diamonds"){
-        this.NaipeCarta = "Ouros";
-      }
-      else if(this.Card['suit'] == "clubs"){
-        this.NaipeCarta = "Paus";
-      }
-      else if(this.Card['suit'] == "spades"){
-        this.NaipeCarta = "Espadas";
-      }
-      else{
-        this.NaipeCarta = "Sem Naipe";
-      }
-      if(this.Card['value'] == "A"){
-        this.valorCarta = "Ás";
-      }
-      else{
-        this.valorCarta = this.Card['value'];
-      }
-    }
+    this.service.AtualizaDadosCarta();
+    this.NaipeCarta = this.service.NaipeCarta;
+    this.valorCarta = this.service.valorCarta;
+    this.Card = this.service.Card;
   }
 
   resetar(){
     this.Card = {
       "Url":"./assets/deck/blue_back.png"
     };
+    this.itens = true;
     this.NaipeCarta = "Sem Naipe";
     this.valorCarta = "Sem Valor";
     this.Cards = cards;
     this.Pilha = [];
+    this.service.resetar();
   }
 }
